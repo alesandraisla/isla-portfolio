@@ -1,0 +1,33 @@
+/* Quatro tokens semânticos mapeados a partir das paletas de referência */
+
+:root,
+[data-palette="jardim"] {
+  --color-jardim-creme: #fdfbf7;
+  --color-jardim-verde: #d1e2d3;
+  --color-jardim-pessego: #fbc4ab;
+  --color-jardim-azul: #a8dadc;
+}
+
+/* Imagem lavanda / costa */
+[data-palette="lavanda"] {
+  --color-jardim-creme: #ffeae5;
+  --color-jardim-verde: #c2c3f3;
+  --color-jardim-pessego: #edc4d6;
+  --color-jardim-azul: #c9b8da;
+}
+
+/* Imagem cerejeira */
+[data-palette="blossom"] {
+  --color-jardim-creme: #efdcd8;
+  --color-jardim-verde: #7ca2a6;
+  --color-jardim-pessego: #f0cec3;
+  --color-jardim-azul: #a4bdbf;
+}
+
+/* Imagem orquídea / cristal */
+[data-palette="orchid"] {
+  --color-jardim-creme: #ddf2f5;
+  --color-jardim-verde: #84a6d6;
+  --color-jardim-pessego: #e5cee0;
+  --color-jardim-azul: #4482bb;
+}

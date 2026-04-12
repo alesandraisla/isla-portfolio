@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+@import "./theme.css";
+
+@theme inline {
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-playfair);
+  --color-background: var(--color-jardim-creme);
+  --color-foreground: #2c2a28;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-jardim-creme);
+  color: var(--color-foreground);
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
+}

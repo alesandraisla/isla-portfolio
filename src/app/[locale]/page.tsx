@@ -1,0 +1,92 @@
+import Link from "next/link";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { isLocale, type Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/dictionaries";
+import { PageTransition } from "@/components/motion/PageTransition";
+
+type Props = { params: Promise<{ locale: string }> };
+
+export default async function HomePage({ params }: Props) {
+  const { locale: raw } = await params;
+  if (!isLocale(raw)) notFound();
+  const locale: Locale = raw;
+  const dict = getDictionary(locale);
+  const base = `/${locale}`;
+
+  const cards = [
+    {
+      href: `${base}/about`,
+      title: dict.nav.about,
+      accent: "bg-jardim-verde/35",
+    },
+    {
+      href: `${base}/creations`,
+      title: dict.nav.creations,
+      accent: "bg-jardim-pessego/40",
+    },
+    {
+      href: `${base}/technologies`,
+      title: dict.nav.technologies,
+      accent: "bg-jardim-azul/35",
+    },
+    {
+      href: `${base}/toolbox`,
+      title: dict.nav.toolbox,
+      accent: "bg-jardim-verde/25",
+    },
+    {
+      href: `${base}/contact`,
+      title: dict.nav.contact,
+      accent: "bg-jardim-pessego/30",
+    },
+  ];
+
+  return (
+    <PageTransition>
+      <section className="space-y-10">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div className="space-y-4">
+            <p className="text-sm uppercase tracking-[0.2em] text-foreground/60">
+              Isla Garden
+            </p>
+            <h1 className="font-serif text-4xl leading-tight text-foreground sm:text-5xl">
+              {dict.home.headline}
+            </h1>
+            <p className="max-w-xl text-lg text-foreground/80">{dict.home.sub}</p>
+            <Link
+              href={`${base}/settings`}
+              className="inline-flex w-fit items-center rounded-full border border-jardim-azul/50 bg-jardim-azul/20 px-5 py-2 text-sm font-medium text-foreground transition hover:bg-jardim-azul/35"
+            >
+              {dict.home.ctaSettings}
+            </Link>
+          </div>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-jardim-verde/40 bg-jardim-pessego/20 shadow-sm">
+            <Image
+              src="/assets/palette-lavanda.png"
+              alt=""
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              priority
+            />
+          </div>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {cards.map((card) => (
+            <Link
+              key={card.href}
+              href={card.href}
+              className={`group rounded-2xl border border-jardim-verde/30 p-5 transition hover:-translate-y-0.5 hover:shadow-md ${card.accent}`}
+            >
+              <span className="font-serif text-xl text-foreground group-hover:underline">
+                {card.title}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </PageTransition>
+  );
+}
