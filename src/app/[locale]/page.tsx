@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { PageTransition } from "@/components/motion/PageTransition";
+import islaLab from "@/assets/islaLab.png";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -48,7 +49,7 @@ export default async function HomePage({ params }: Props) {
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-4">
             <p className="text-sm uppercase tracking-[0.2em] text-foreground/60">
-              Isla Garden
+              Isla Lab
             </p>
             <h1 className="font-serif text-4xl leading-tight text-foreground sm:text-5xl">
               {dict.home.headline}
@@ -61,14 +62,18 @@ export default async function HomePage({ params }: Props) {
               {dict.home.ctaSettings}
             </Link>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-jardim-verde/40 bg-jardim-pessego/20 shadow-sm">
+          <div className="group relative aspect-square max-h-[min(100%,420px)] w-full overflow-hidden rounded-3xl border border-jardim-verde/40 bg-jardim-pessego/20 shadow-sm transition-shadow duration-300 hover:shadow-md">
             <Image
-              src="/assets/palette-lavanda.png"
-              alt=""
+              src={islaLab}
+              alt="Isla Lab"
               fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="object-contain p-4 transition duration-300 ease-out group-hover:brightness-110 group-hover:contrast-[0.97] group-hover:saturate-90"
+              sizes="(max-width: 1024px) 100vw, min(420px, 40vw)"
               priority
+            />
+            <div
+              className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-white/40 via-jardim-creme/30 to-jardim-pessego/15 opacity-0 mix-blend-soft-light transition-opacity duration-300 ease-out group-hover:opacity-100"
+              aria-hidden
             />
           </div>
         </div>

@@ -25,7 +25,7 @@ export function SiteHeader({ locale, dict }: Props) {
           href={base}
           className="font-serif text-xl tracking-tight text-foreground transition-opacity hover:opacity-80"
         >
-          Isla Garden
+          Isla Lab
         </Link>
         <nav className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
           {routes.map(({ key, path }) => (

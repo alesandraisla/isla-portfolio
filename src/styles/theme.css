@@ -1,4 +1,9 @@
 /* Quatro tokens semânticos mapeados a partir das paletas de referência */
+/* --text-on-surface: cor dos textos; ligada a --color-foreground no @theme (globals.css) */
+
+:root {
+  --text-on-surface: #2c2a28;
+}
 
 :root,
 [data-palette="jardim"] {
@@ -6,6 +11,7 @@
   --color-jardim-verde: #d1e2d3;
   --color-jardim-pessego: #fbc4ab;
   --color-jardim-azul: #a8dadc;
+  --text-on-surface: #2c2a28;
 }
 
 /* Imagem lavanda / costa */
@@ -14,14 +20,16 @@
   --color-jardim-verde: #c2c3f3;
   --color-jardim-pessego: #edc4d6;
   --color-jardim-azul: #c9b8da;
+  --text-on-surface: #2c2a28;
 }
 
-/* Imagem cerejeira */
+/* Cerejeira — modo escuro: fundo roxo + texto claro */
 [data-palette="blossom"] {
-  --color-jardim-creme: #efdcd8;
-  --color-jardim-verde: #7ca2a6;
-  --color-jardim-pessego: #f0cec3;
-  --color-jardim-azul: #a4bdbf;
+  --color-jardim-creme: #1c0a33;
+  --color-jardim-verde: #92dbdc;
+  --color-jardim-pessego: #5f17ea;
+  --color-jardim-azul: #f5f5f8;
+  --text-on-surface: #f8f8fc;
 }
 
 /* Imagem orquídea / cristal */
@@ -30,4 +38,5 @@
   --color-jardim-verde: #84a6d6;
   --color-jardim-pessego: #e5cee0;
   --color-jardim-azul: #4482bb;
+  --text-on-surface: #2c2a28;
 }

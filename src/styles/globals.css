@@ -6,7 +6,8 @@
   --font-sans: var(--font-dm-sans);
   --font-serif: var(--font-playfair);
   --color-background: var(--color-jardim-creme);
-  --color-foreground: #2c2a28;
+  /* Ligado a --text-on-surface em theme.css (claro no blossom, escuro nas outras) */
+  --color-foreground: var(--text-on-surface);
 }
 
 html {
@@ -15,6 +16,6 @@ html {
 
 body {
   background-color: var(--color-jardim-creme);
-  color: var(--color-foreground);
+  color: var(--text-on-surface);
   font-family: var(--font-dm-sans), system-ui, sans-serif;
 }
