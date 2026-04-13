@@ -10,8 +10,8 @@ type Props = {
 const routes: { key: keyof Dictionary["nav"]; path: string }[] = [
   { key: "about", path: "about" },
   { key: "creations", path: "creations" },
+  { key: "aulas", path: "aulas" },
   { key: "technologies", path: "technologies" },
-  { key: "toolbox", path: "toolbox" },
   { key: "contact", path: "contact" },
 ];
 

@@ -27,14 +27,14 @@ export default async function HomePage({ params }: Props) {
       accent: "bg-jardim-pessego/40",
     },
     {
+      href: `${base}/aulas`,
+      title: dict.nav.aulas,
+      accent: "bg-jardim-azul/30",
+    },
+    {
       href: `${base}/technologies`,
       title: dict.nav.technologies,
       accent: "bg-jardim-azul/35",
-    },
-    {
-      href: `${base}/toolbox`,
-      title: dict.nav.toolbox,
-      accent: "bg-jardim-verde/25",
     },
     {
       href: `${base}/contact`,

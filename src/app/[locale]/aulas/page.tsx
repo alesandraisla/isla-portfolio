@@ -2,16 +2,16 @@ import { notFound } from "next/navigation";
 import { isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
 import { PageTransition } from "@/components/motion/PageTransition";
-import { CreationsGithubGrid } from "@/components/creations/CreationsGithubGrid";
+import { AulasYoutubeGrid } from "@/components/aulas/AulasYoutubeGrid";
 
 type Props = { params: Promise<{ locale: string }> };
 
-export default async function CreationsPage({ params }: Props) {
+export default async function AulasPage({ params }: Props) {
   const { locale: raw } = await params;
   if (!isLocale(raw)) notFound();
   const locale: Locale = raw;
   const dict = getDictionary(locale);
-  const p = dict.pages.creations;
+  const p = dict.pages.aulas;
 
   return (
     <PageTransition>
@@ -24,9 +24,9 @@ export default async function CreationsPage({ params }: Props) {
             {p.body}
           </p>
         </header>
-        <CreationsGithubGrid
-          items={p.projects}
-          openRepoAriaTemplate={p.openRepoAria}
+        <AulasYoutubeGrid
+          items={p.lessons}
+          openVideoAriaTemplate={p.openVideoAria}
         />
       </div>
     </PageTransition>

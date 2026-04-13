@@ -18,6 +18,9 @@ export type AboutSplitCopy = {
 };
 
 export type AboutCarouselCopy = {
+  headingBefore: string;
+  headingEmphasis: string;
+  headingAfter: string;
   items: AboutTestimonial[];
   cta: string;
   prevAria: string;
@@ -54,14 +57,66 @@ export type TechnologiesPageCopy = {
   wave: TechnologiesWaveCopy;
 };
 
+/** Três cartões fixos (imagens em `CreationsGithubGrid`: rpg, countdown, social). */
+export type CreationShowcaseItem = {
+  title: string;
+  imageAlt: string;
+  href: string;
+  frameClassName?: string;
+};
+
+export type CreationsPageCopy = {
+  title: string;
+  body: string;
+  /** Use `{title}` como placeholder para o atributo `aria-label` do link. */
+  openRepoAria: string;
+  projects: [CreationShowcaseItem, CreationShowcaseItem, CreationShowcaseItem];
+};
+
+export type YoutubeLessonItem = {
+  title: string;
+  /** ID do vídeo no YouTube (parte após `v=` na URL). */
+  videoId: string;
+  imageAlt: string;
+  frameClassName?: string;
+};
+
+export type AulasPageCopy = {
+  title: string;
+  body: string;
+  /** Template com `{title}` para o `aria-label` do link. */
+  openVideoAria: string;
+  lessons: YoutubeLessonItem[];
+};
+
+export type ContactSocialId =
+  | "youtube"
+  | "github"
+  | "instagram"
+  | "linkedin";
+
+export type ContactSocialItem = {
+  id: ContactSocialId;
+  url: string;
+  label: string;
+  action: string;
+  linkAria: string;
+};
+
+export type ContactPageCopy = {
+  title: string;
+  body: string;
+  socials: ContactSocialItem[];
+};
+
 export type Dictionary = {
   meta: { title: string; description: string };
   nav: {
     home: string;
     about: string;
     creations: string;
+    aulas: string;
     technologies: string;
-    toolbox: string;
     contact: string;
     settings: string;
   };
@@ -86,10 +141,10 @@ export type Dictionary = {
       split: AboutSplitCopy;
       carousel: AboutCarouselCopy;
     };
-    creations: { title: string; body: string };
+    creations: CreationsPageCopy;
+    aulas: AulasPageCopy;
     technologies: TechnologiesPageCopy;
-    toolbox: { title: string; body: string };
-    contact: { title: string; body: string };
+    contact: ContactPageCopy;
   };
 };
 
@@ -102,8 +157,8 @@ const pt: Dictionary = {
     home: "Início",
     about: "Sobre mim",
     creations: "Minhas criações",
+    aulas: "Aulas",
     technologies: "Tecnologias",
-    toolbox: "Caixa de ferramentas",
     contact: "Diga olá",
     settings: "Configurações",
   },
@@ -150,6 +205,9 @@ const pt: Dictionary = {
         imageAlt: "Pessoa a trabalhar com portátil numa secretária clara",
       },
       carousel: {
+        headingBefore: "Palavras gentis de quem ",
+        headingEmphasis: "confia",
+        headingAfter: " em colaborar connosco",
         items: [
           {
             quote: "Adorei colaborar contigo neste projeto.",
@@ -167,14 +225,69 @@ const pt: Dictionary = {
             attribution: "Sofia | Tech for Good",
           },
         ],
-        cta: "Trabalhar comigo",
+        cta: "Contactar",
         prevAria: "Depoimento anterior",
         nextAria: "Próximo depoimento",
       },
     },
     creations: {
       title: "Minhas criações",
-      body: "Galeria ou lista de projetos: substitua por cards, imagens e links reais.",
+      body:
+        "Três projetos em destaque — clica na imagem para abrir o link correspondente.",
+      openRepoAria: "Abrir {title} (abre num novo separador)",
+      projects: [
+        {
+          title: "RPG & Coffee",
+          imageAlt: "Captura do site RPG & Coffee com estética fantástica",
+          href: "https://github.com/",
+          frameClassName: "bg-jardim-pessego/50",
+        },
+        {
+          title: "Countdown de lançamento",
+          imageAlt: "Landing com contagem decrescente e ilustração de foguete",
+          href: "https://github.com/",
+          frameClassName: "bg-foreground/15",
+        },
+        {
+          title: "Página social",
+          imageAlt: "Página estilo link-in-bio com avatar e botões",
+          href: "https://github.com/",
+          frameClassName: "bg-jardim-azul/45",
+        },
+      ],
+    },
+    aulas: {
+      title: "Aulas",
+      body:
+        "Miniaturas dos vídeos do YouTube — clica num cartão para abrir a aula num novo separador.",
+      openVideoAria:
+        "Abrir a aula {title} no YouTube (abre num novo separador)",
+      lessons: [
+        {
+          title: "React em 100 segundos",
+          videoId: "Tn6-PIqc4UM",
+          imageAlt: "Miniatura do vídeo sobre React no YouTube",
+          frameClassName: "bg-jardim-pessego/50",
+        },
+        {
+          title: "TypeScript em 100 segundos",
+          videoId: "zQnBQ4iBq5Y",
+          imageAlt: "Miniatura do vídeo sobre TypeScript no YouTube",
+          frameClassName: "bg-foreground/15",
+        },
+        {
+          title: "Next.js em 100 segundos",
+          videoId: "Sklc_fQBmcs",
+          imageAlt: "Miniatura do vídeo sobre Next.js no YouTube",
+          frameClassName: "bg-jardim-azul/45",
+        },
+        {
+          title: "Git em 100 segundos",
+          videoId: "USjZcfj8yxE",
+          imageAlt: "Miniatura do vídeo sobre Git no YouTube",
+          frameClassName: "bg-jardim-verde/55",
+        },
+      ],
     },
     technologies: {
       title: "Tecnologias",
@@ -228,13 +341,40 @@ const pt: Dictionary = {
         imageAlt: "Portátil numa secretária com código no ecrã",
       },
     },
-    toolbox: {
-      title: "Caixa de ferramentas",
-      body: "Ferramentas do dia a dia: editores, plugins, fluxos de trabalho.",
-    },
     contact: {
       title: "Diga olá",
-      body: "Formulário, e-mail ou redes — adicione seu canal preferido aqui.",
+      body:
+        "Escolhe uma rede abaixo — cada ícone leva ao perfil ou canal correspondente.",
+      socials: [
+        {
+          id: "youtube",
+          url: "https://www.youtube.com/",
+          label: "YouTube",
+          action: "Subscrever",
+          linkAria: "Abrir YouTube num novo separador",
+        },
+        {
+          id: "github",
+          url: "https://github.com/",
+          label: "GitHub",
+          action: "Ver código",
+          linkAria: "Abrir GitHub num novo separador",
+        },
+        {
+          id: "instagram",
+          url: "https://www.instagram.com/",
+          label: "Instagram",
+          action: "Seguir",
+          linkAria: "Abrir Instagram num novo separador",
+        },
+        {
+          id: "linkedin",
+          url: "https://www.linkedin.com/",
+          label: "LinkedIn",
+          action: "Conectar",
+          linkAria: "Abrir LinkedIn num novo separador",
+        },
+      ],
     },
   },
 };
@@ -248,8 +388,8 @@ const en: Dictionary = {
     home: "Home",
     about: "About",
     creations: "Creations",
+    aulas: "Lessons",
     technologies: "Technologies",
-    toolbox: "Toolbox",
     contact: "Say hello",
     settings: "Settings",
   },
@@ -296,6 +436,9 @@ const en: Dictionary = {
         imageAlt: "Person working on a laptop at a bright desk",
       },
       carousel: {
+        headingBefore: "Kind words from our ",
+        headingEmphasis: "lovely",
+        headingAfter: " collaborators",
         items: [
           {
             quote: "I have absolutely loved working with you on this project.",
@@ -320,7 +463,61 @@ const en: Dictionary = {
     },
     creations: {
       title: "Creations",
-      body: "Gallery or project list: replace with real cards, images and links.",
+      body:
+        "Three featured projects — click an image to open the matching link.",
+      openRepoAria: "Open {title} (opens in a new tab)",
+      projects: [
+        {
+          title: "RPG & Coffee",
+          imageAlt: "Screenshot of the RPG & Coffee fantasy-themed site",
+          href: "https://github.com/",
+          frameClassName: "bg-jardim-pessego/50",
+        },
+        {
+          title: "Launch countdown",
+          imageAlt: "Landing page with countdown timer and rocket illustration",
+          href: "https://github.com/",
+          frameClassName: "bg-foreground/15",
+        },
+        {
+          title: "Social page",
+          imageAlt: "Link-in-bio style page with avatar and buttons",
+          href: "https://github.com/",
+          frameClassName: "bg-jardim-azul/45",
+        },
+      ],
+    },
+    aulas: {
+      title: "Lessons",
+      body:
+        "YouTube thumbnails — click a card to open the lesson in a new tab.",
+      openVideoAria: "Open the {title} lesson on YouTube (opens in a new tab)",
+      lessons: [
+        {
+          title: "React in 100 seconds",
+          videoId: "Tn6-PIqc4UM",
+          imageAlt: "YouTube thumbnail for the React video",
+          frameClassName: "bg-jardim-pessego/50",
+        },
+        {
+          title: "TypeScript in 100 seconds",
+          videoId: "zQnBQ4iBq5Y",
+          imageAlt: "YouTube thumbnail for the TypeScript video",
+          frameClassName: "bg-foreground/15",
+        },
+        {
+          title: "Next.js in 100 seconds",
+          videoId: "Sklc_fQBmcs",
+          imageAlt: "YouTube thumbnail for the Next.js video",
+          frameClassName: "bg-jardim-azul/45",
+        },
+        {
+          title: "Git in 100 seconds",
+          videoId: "USjZcfj8yxE",
+          imageAlt: "YouTube thumbnail for the Git video",
+          frameClassName: "bg-jardim-verde/55",
+        },
+      ],
     },
     technologies: {
       title: "Technologies",
@@ -374,13 +571,39 @@ const en: Dictionary = {
         imageAlt: "Laptop on a desk with code on the screen",
       },
     },
-    toolbox: {
-      title: "Toolbox",
-      body: "Day-to-day tools: editors, plugins, workflows.",
-    },
     contact: {
       title: "Say hello",
-      body: "Form, email or socials — add your preferred channel here.",
+      body: "Pick a network below — each icon opens the matching profile or channel.",
+      socials: [
+        {
+          id: "youtube",
+          url: "https://www.youtube.com/",
+          label: "YouTube",
+          action: "Subscribe",
+          linkAria: "Open YouTube in a new tab",
+        },
+        {
+          id: "github",
+          url: "https://github.com/",
+          label: "GitHub",
+          action: "View code",
+          linkAria: "Open GitHub in a new tab",
+        },
+        {
+          id: "instagram",
+          url: "https://www.instagram.com/",
+          label: "Instagram",
+          action: "Follow",
+          linkAria: "Open Instagram in a new tab",
+        },
+        {
+          id: "linkedin",
+          url: "https://www.linkedin.com/",
+          label: "LinkedIn",
+          action: "Connect",
+          linkAria: "Open LinkedIn in a new tab",
+        },
+      ],
     },
   },
 };
