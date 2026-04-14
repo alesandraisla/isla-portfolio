@@ -1,5 +1,5 @@
 import type { YoutubeLessonItem } from "@/i18n/dictionaries";
-import { youtubeThumbnailUrl, youtubeWatchUrl } from "@/lib/youtube";
+import { AULA_THUMBNAIL_BY_ID } from "@/components/aulas/lessonThumbnails";
 import { AulasLessonCard } from "./AulasLessonCard";
 
 const DEFAULT_FRAMES = [
@@ -27,14 +27,14 @@ export function AulasYoutubeGrid({ items, openVideoAriaTemplate }: Props) {
         const frame =
           item.frameClassName ??
           DEFAULT_FRAMES[index % DEFAULT_FRAMES.length]!;
-        const href = youtubeWatchUrl(item.videoId);
-        const imageUrl = youtubeThumbnailUrl(item.videoId);
+        const thumbnail = AULA_THUMBNAIL_BY_ID[item.id];
+        if (!thumbnail) return null;
         return (
-          <li key={`${item.videoId}-${item.title}`}>
+          <li key={item.id}>
             <AulasLessonCard
               title={item.title}
-              href={href}
-              imageUrl={imageUrl}
+              href={item.youtubeUrl}
+              thumbnail={thumbnail}
               imageAlt={item.imageAlt}
               frameClassName={frame}
               ariaLabel={linkAria(openVideoAriaTemplate, item.title)}

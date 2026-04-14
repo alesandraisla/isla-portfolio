@@ -26,7 +26,8 @@ export default async function CreationsPage({ params }: Props) {
         </header>
         <CreationsGithubGrid
           items={p.projects}
-          openRepoAriaTemplate={p.openRepoAria}
+          openDetailAriaTemplate={p.openDetailAria}
+          closeLabel={p.closeDetail}
         />
       </div>
     </PageTransition>

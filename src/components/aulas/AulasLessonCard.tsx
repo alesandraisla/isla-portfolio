@@ -1,9 +1,9 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 
 export type AulasLessonCardProps = {
   title: string;
   href: string;
-  imageUrl: string;
+  thumbnail: StaticImageData;
   imageAlt: string;
   frameClassName: string;
   ariaLabel: string;
@@ -12,7 +12,7 @@ export type AulasLessonCardProps = {
 export function AulasLessonCard({
   title,
   href,
-  imageUrl,
+  thumbnail,
   imageAlt,
   frameClassName,
   ariaLabel,
@@ -30,10 +30,10 @@ export function AulasLessonCard({
       >
         <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-background/40">
           <Image
-            src={imageUrl}
+            src={thumbnail}
             alt={imageAlt}
             fill
-            className="object-cover transition duration-300 group-hover:brightness-[1.03]"
+            className="object-cover object-center transition duration-300 group-hover:brightness-[1.03]"
             sizes="(max-width: 640px) 100vw, 50vw"
           />
           <span

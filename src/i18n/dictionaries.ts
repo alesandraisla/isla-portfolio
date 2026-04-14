@@ -59,24 +59,32 @@ export type TechnologiesPageCopy = {
 
 /** Três cartões fixos (imagens em `CreationsGithubGrid`: rpg, countdown, social). */
 export type CreationShowcaseItem = {
+  id: string;
   title: string;
   imageAlt: string;
-  href: string;
+  /** Texto mostrado no painel de detalhe ao clicar no cartão. */
+  detailBody: string;
+  /** Legendas das fotos no modal (mesma ordem que `getCreationGalleryImages(id)`). */
+  galleryImageAlts?: string[];
   frameClassName?: string;
 };
 
 export type CreationsPageCopy = {
   title: string;
   body: string;
-  /** Use `{title}` como placeholder para o atributo `aria-label` do link. */
-  openRepoAria: string;
+  /** Use `{title}` no `aria-label` do botão que abre o detalhe. */
+  openDetailAria: string;
+  /** Rótulo do botão que fecha o painel (modal). */
+  closeDetail: string;
   projects: [CreationShowcaseItem, CreationShowcaseItem, CreationShowcaseItem];
 };
 
 export type YoutubeLessonItem = {
+  /** Chave estável — alinha com `AULA_THUMBNAIL_BY_ID` em `lessonThumbnails.ts`. */
+  id: string;
   title: string;
-  /** ID do vídeo no YouTube (parte após `v=` na URL). */
-  videoId: string;
+  /** URL completa do vídeo no YouTube. */
+  youtubeUrl: string;
   imageAlt: string;
   frameClassName?: string;
 };
@@ -233,25 +241,39 @@ const pt: Dictionary = {
     creations: {
       title: "Minhas criações",
       body:
-        "Três projetos em destaque — clica na imagem para abrir o link correspondente.",
-      openRepoAria: "Abrir {title} (abre num novo separador)",
+        "Três projetos em destaque — clica num cartão para ver a descrição e o contexto de cada um.",
+      openDetailAria: "Ver detalhes de {title}",
+      closeDetail: "Fechar",
       projects: [
         {
+          id: "rpg",
           title: "RPG & Coffee",
           imageAlt: "Captura do site RPG & Coffee com estética fantástica",
-          href: "https://github.com/",
+          detailBody:
+            "RPGECOFFEE reúne a comunidade de RPG de mesa: agenda de mesas com dezenas de sistemas e horários, livraria online, cardápio temático do café e serviços como pintura de miniaturas — tudo com identidade visual acolhedora e ilustrações fantásticas.",
+          galleryImageAlts: [
+            "Início com hero, navegação e eventos",
+            "Mesas de RPG — diretório com sistemas e horários",
+            "Livraria — grelha de livros e HQs",
+            "Coffee — cardápio com itens temáticos",
+            "Serviços — miniaturas, contacto e redes",
+          ],
           frameClassName: "bg-jardim-pessego/50",
         },
         {
+          id: "countdown",
           title: "Countdown de lançamento",
           imageAlt: "Landing com contagem decrescente e ilustração de foguete",
-          href: "https://github.com/",
+          detailBody:
+            "Página “coming soon” com temporizador (dias, horas, minutos e segundos), chamada para inscrição e ilustração de foguete. Ideal para gerar expectativa antes de um lançamento.",
           frameClassName: "bg-foreground/15",
         },
         {
+          id: "social",
           title: "Página social",
           imageAlt: "Página estilo link-in-bio com avatar e botões",
-          href: "https://github.com/",
+          detailBody:
+            "Perfil estilo link-in-bio: avatar, nome de utilizador, botões para vídeos ou recursos e ícones de redes sociais num layout simples e centrado.",
           frameClassName: "bg-jardim-azul/45",
         },
       ],
@@ -259,32 +281,38 @@ const pt: Dictionary = {
     aulas: {
       title: "Aulas",
       body:
-        "Miniaturas dos vídeos do YouTube — clica num cartão para abrir a aula num novo separador.",
+        "Vídeos do canal — clica num cartão para abrir a aula no YouTube (novo separador).",
       openVideoAria:
         "Abrir a aula {title} no YouTube (abre num novo separador)",
       lessons: [
         {
-          title: "React em 100 segundos",
-          videoId: "Tn6-PIqc4UM",
-          imageAlt: "Miniatura do vídeo sobre React no YouTube",
+          id: "acessibilidade",
+          title: "Componente de acessibilidade (font size)",
+          youtubeUrl: "https://www.youtube.com/watch?v=TbBB2GkY93Q",
+          imageAlt:
+            "Miniatura: Criando um componente de acessibilidade — Font Size",
           frameClassName: "bg-jardim-pessego/50",
         },
         {
-          title: "TypeScript em 100 segundos",
-          videoId: "zQnBQ4iBq5Y",
-          imageAlt: "Miniatura do vídeo sobre TypeScript no YouTube",
+          id: "dropdown",
+          title: "Dropdown customizado (ReactJS)",
+          youtubeUrl: "https://www.youtube.com/watch?v=wb6JzjY-u_M",
+          imageAlt: "Miniatura: Criando um dropdown customizado em ReactJS",
           frameClassName: "bg-foreground/15",
         },
         {
-          title: "Next.js em 100 segundos",
-          videoId: "Sklc_fQBmcs",
-          imageAlt: "Miniatura do vídeo sobre Next.js no YouTube",
+          id: "menu_hamburguer",
+          title: "Menu hambúrguer (React)",
+          youtubeUrl: "https://www.youtube.com/watch?v=7j6s_TiQNGY",
+          imageAlt: "Miniatura: Criando um menu hambúrguer com React",
           frameClassName: "bg-jardim-azul/45",
         },
         {
-          title: "Git em 100 segundos",
-          videoId: "USjZcfj8yxE",
-          imageAlt: "Miniatura do vídeo sobre Git no YouTube",
+          id: "microfrontend",
+          title: "Micro-frontend, bibliotecas e monorepo",
+          youtubeUrl: "https://www.youtube.com/watch?v=lch6KXesgTw",
+          imageAlt:
+            "Miniatura: Micro-frontend, bibliotecas e monorepo no YouTube",
           frameClassName: "bg-jardim-verde/55",
         },
       ],
@@ -464,25 +492,39 @@ const en: Dictionary = {
     creations: {
       title: "Creations",
       body:
-        "Three featured projects — click an image to open the matching link.",
-      openRepoAria: "Open {title} (opens in a new tab)",
+        "Three featured projects — click a card to read more about each one.",
+      openDetailAria: "View details for {title}",
+      closeDetail: "Close",
       projects: [
         {
+          id: "rpg",
           title: "RPG & Coffee",
           imageAlt: "Screenshot of the RPG & Coffee fantasy-themed site",
-          href: "https://github.com/",
+          detailBody:
+            "RPGECOFFEE brings together the tabletop RPG community: a directory of game tables and schedules across many systems, an online bookstore, a themed café menu, and services like miniature painting—wrapped in a warm, illustrated brand.",
+          galleryImageAlts: [
+            "Home — hero, navigation, and events",
+            "RPG tables — directory with systems and schedules",
+            "Bookstore — product grid",
+            "Coffee — themed menu",
+            "Services — miniatures, contact, and socials",
+          ],
           frameClassName: "bg-jardim-pessego/50",
         },
         {
+          id: "countdown",
           title: "Launch countdown",
           imageAlt: "Landing page with countdown timer and rocket illustration",
-          href: "https://github.com/",
+          detailBody:
+            "A “coming soon” page with a live countdown (days, hours, minutes, seconds), signup CTA, and rocket artwork — built to build hype before a launch.",
           frameClassName: "bg-foreground/15",
         },
         {
+          id: "social",
           title: "Social page",
           imageAlt: "Link-in-bio style page with avatar and buttons",
-          href: "https://github.com/",
+          detailBody:
+            "Link-in-bio profile: avatar, handle, buttons for videos or links, and social icons in a clean, centered layout.",
           frameClassName: "bg-jardim-azul/45",
         },
       ],
@@ -490,31 +532,37 @@ const en: Dictionary = {
     aulas: {
       title: "Lessons",
       body:
-        "YouTube thumbnails — click a card to open the lesson in a new tab.",
+        "Videos from the channel — click a card to open the lesson on YouTube (new tab).",
       openVideoAria: "Open the {title} lesson on YouTube (opens in a new tab)",
       lessons: [
         {
-          title: "React in 100 seconds",
-          videoId: "Tn6-PIqc4UM",
-          imageAlt: "YouTube thumbnail for the React video",
+          id: "acessibilidade",
+          title: "Accessibility component (font size)",
+          youtubeUrl: "https://www.youtube.com/watch?v=TbBB2GkY93Q",
+          imageAlt:
+            "Thumbnail: Building an accessibility component — Font Size",
           frameClassName: "bg-jardim-pessego/50",
         },
         {
-          title: "TypeScript in 100 seconds",
-          videoId: "zQnBQ4iBq5Y",
-          imageAlt: "YouTube thumbnail for the TypeScript video",
+          id: "dropdown",
+          title: "Custom dropdown (React)",
+          youtubeUrl: "https://www.youtube.com/watch?v=wb6JzjY-u_M",
+          imageAlt: "Thumbnail: Custom dropdown in React",
           frameClassName: "bg-foreground/15",
         },
         {
-          title: "Next.js in 100 seconds",
-          videoId: "Sklc_fQBmcs",
-          imageAlt: "YouTube thumbnail for the Next.js video",
+          id: "menu_hamburguer",
+          title: "Hamburger menu (React)",
+          youtubeUrl: "https://www.youtube.com/watch?v=7j6s_TiQNGY",
+          imageAlt: "Thumbnail: Hamburger menu with React",
           frameClassName: "bg-jardim-azul/45",
         },
         {
-          title: "Git in 100 seconds",
-          videoId: "USjZcfj8yxE",
-          imageAlt: "YouTube thumbnail for the Git video",
+          id: "microfrontend",
+          title: "Micro-frontends, libraries & monorepo",
+          youtubeUrl: "https://www.youtube.com/watch?v=lch6KXesgTw",
+          imageAlt:
+            "Thumbnail: Micro-frontends, libraries and monorepo on YouTube",
           frameClassName: "bg-jardim-verde/55",
         },
       ],
