@@ -1,37 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Isla Garden Portfolio
 
-## Getting Started
+Site pessoal **bilíngue** (`pt` / `en`) com identidade visual “jardim”, **paletas de cor alternáveis** guardadas no browser e secções que vão além da típica grelha de projetos: **sobre**, **criações**, **aulas**, **tecnologias**, **contacto** e **definições**. Construído com **Next.js (App Router)**, **React**, **TypeScript**, **Tailwind CSS v4** e **Framer Motion** para transições leves.
 
-First, run the development server:
+Repositório relacionado: [https://github.com/alesandraisla/isla-portfolio](https://github.com/alesandraisla/isla-portfolio)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Pré-visualização
+
+_Capturas geradas em ambiente local (`/pt`)._
+
+| Início | Sobre |
+| --- | --- |
+| ![Página inicial em português](docs/readme/home-pt.png) | ![Página Sobre em português](docs/readme/about-pt.png) |
+
+| Definições (paletas) |
+| --- |
+| ![Página de definições com escolha de paleta](docs/readme/settings-pt.png) |
+
+## Tecnologias
+
+- **Next.js** 16 (App Router), **React** 19, **TypeScript**
+- **Tailwind CSS** 4 + tokens em **variáveis CSS** (`src/styles/theme.css`)
+- **Framer Motion** (ex.: `PageTransition`)
+- **ESLint** com `eslint-config-next`
+
+## Metodologia e o que destaca o projeto
+
+- **Rotas por idioma** (`/[locale]/...`) com textos centralizados em **`src/i18n/dictionaries.ts`** e validação de locale no layout.
+- **Middleware** redireciona URLs sem locale para o idioma por defeito (`pt`).
+- **Tema**: várias paletas (`jardim`, `lavanda`, `blossom`, `orchid`) aplicadas via `data-palette` no `documentElement`, com persistência em `localStorage` — não é apenas claro/escuro.
+- **Componentes por área** em `src/components/` (about, aulas, contact, creations, layout, motion, providers, settings, technologies).
+- **Export estático** (`output: "export"` em `next.config.ts`) e **`basePath: "/isla-portfolio"`** para alojamento em GitHub Pages (imagens `next/image` em modo compatível com o export).
+
+## Estrutura de pastas (resumo)
+
+```
+src/
+  app/                 # App Router: layout raiz + rotas [locale]
+  assets/              # Imagens importadas no bundle
+  components/          # UI por domínio
+  i18n/                # config + dicionários
+  styles/              # globals + tema (CSS variables)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Como correr localmente
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Abre [http://localhost:3000](http://localhost:3000) — o site redireciona para **`/pt`**.
 
-## Learn More
+## Build de produção (export estático)
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Gera o site estático na pasta **`out/`** (ignorada pelo Git). Os assets e rotas usam o prefixo configurado em `next.config.ts`: **`basePath: "/isla-portfolio"`** (ex.: ficheiros em `out/` referenciam `/isla-portfolio/_next/...`).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para pré-visualizar o export localmente (ex.: [serve](https://github.com/vercel/serve)):
 
-## Deploy on Vercel
+```bash
+npx serve out
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Depois abre **`http://localhost:3000/isla-portfolio/pt`** (ajusta porta se o `serve` mostrar outra).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# isla-portfolio
+O script `npm run start` corresponde ao servidor **Next** padrão; para GitHub Pages costuma publicar-se o conteúdo de **`out/`** na raiz do site com o caminho do repositório (`/isla-portfolio`).
+
+## Atualizar as imagens deste README
+
+Com o servidor de desenvolvimento a correr (`npm run dev`), na raiz do projeto:
+
+```bash
+mkdir -p docs/readme
+npx -y playwright@1.49.1 screenshot "http://127.0.0.1:3000/pt" "docs/readme/home-pt.png" --viewport-size=1280,800 --wait-for-timeout=2000
+npx -y playwright@1.49.1 screenshot "http://127.0.0.1:3000/pt/about" "docs/readme/about-pt.png" --viewport-size=1280,800 --wait-for-timeout=2000
+npx -y playwright@1.49.1 screenshot "http://127.0.0.1:3000/pt/settings" "docs/readme/settings-pt.png" --viewport-size=1280,800 --wait-for-timeout=2000
+```
+
+Na primeira utilização o Playwright pode pedir a instalação do Chromium (`npx playwright install chromium`).
