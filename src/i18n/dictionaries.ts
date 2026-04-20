@@ -1,7 +1,6 @@
 import type { Locale } from "./config";
 
 export type AboutTestimonial = {
-  quote: string;
   body: string;
   attribution: string;
 };
@@ -15,6 +14,7 @@ export type AboutSplitCopy = {
   titleAfter: string;
   cta: string;
   imageAlt: string;
+  titleBefore2: string;
 };
 
 export type AboutCarouselCopy = {
@@ -204,33 +204,28 @@ const pt: Dictionary = {
       body: "Conte sua história, valores e o que te move — este bloco é um ponto de partida.",
       split: {
         eyebrow: "Portfólio & experiência maker",
-        titleBefore1: "Converte ideias em ",
-        emphasis1: "realidade",
-        titleBetween: " com soluções ",
-        emphasis2: "à tua medida",
-        titleAfter: " — da web ao objeto físico.",
+        titleBefore1: "Codificando o ",
+        emphasis1: "digital, ",
+        titleBetween: " esculpindo ",
+        emphasis2: "a",
+        titleAfter: " realidade.",
         cta: "Ver criações",
         imageAlt: "Pessoa a trabalhar com portátil numa secretária clara",
+        titleBefore2:
+          "Sou uma desenvolvedora Frontend movida pela intersecção entre o software e o mundo tangível. Com sólida experiência na construção de interfaces complexas e escaláveis, aplico o rigor da engenharia de software tanto no desenvolvimento web quanto na fabricação digital. Meu foco é unir estética minimalista e precisão técnica para transformar conceitos abstratos em experiências reais, seja através de linhas de código ou de modelos materializados em 3D.",
       },
       carousel: {
-        headingBefore: "Palavras gentis de quem ",
-        headingEmphasis: "confia",
-        headingAfter: " em colaborar connosco",
+        headingBefore: "Impacto real, ",
+        headingEmphasis: "do pixel",
+        headingAfter: " ao físico",
         items: [
           {
-            quote: "Adorei colaborar contigo neste projeto.",
-            body: "Comunicação clara, entregas no prazo e atenção ao detalhe. O resultado superou o que imaginámos para a nossa presença online.",
-            attribution: "Ana | Isla Lab",
+            body: "Achei muito fofa a impressão em 3D, linda mesmo, arrasa demais, trabalho impecável",
+            attribution: "Cristhiane | Isla lab",
           },
           {
-            quote: "Profissionalismo e criatividade em cada etapa.",
-            body: "Desde o protótipo ao deploy, sentimos confiança total. Recomendo para equipas que querem ir além do template.",
-            attribution: "Miguel | Estúdio paralelo",
-          },
-          {
-            quote: "O equilíbrio entre design e engenharia é raro.",
-            body: "Conseguiste traduzir requisitos técnicos numa experiência simples para o utilizador. Voltaremos a trabalhar juntos.",
-            attribution: "Sofia | Tech for Good",
+            body: "Site ficou perfeito com todas as funcionalidades que precisávamos.",
+            attribution: "Anieila | Isla lab",
           },
         ],
         cta: "Contactar",
@@ -240,8 +235,7 @@ const pt: Dictionary = {
     },
     creations: {
       title: "Minhas criações",
-      body:
-        "Três projetos em destaque — clica num cartão para ver a descrição e o contexto de cada um.",
+      body: "Três projetos em destaque — clica num cartão para ver a descrição e o contexto de cada um.",
       openDetailAria: "Ver detalhes de {title}",
       closeDetail: "Fechar",
       projects: [
@@ -280,8 +274,7 @@ const pt: Dictionary = {
     },
     aulas: {
       title: "Aulas",
-      body:
-        "Vídeos do canal — clica num cartão para abrir a aula no YouTube (novo separador).",
+      body: "Vídeos do canal — clique em um dos cartões para assistir a aula.",
       openVideoAria:
         "Abrir a aula {title} no YouTube (abre num novo separador)",
       lessons: [
@@ -319,8 +312,7 @@ const pt: Dictionary = {
     },
     technologies: {
       title: "Tecnologias",
-      body:
-        "Ferramentas e práticas que uso no dia a dia para construir interfaces claras, performantes e fáceis de evoluir.",
+      body: "Ferramentas e práticas que uso no dia a dia para construir interfaces claras, performantes e fáceis de evoluir.",
       grid: {
         heading: "Stack de trabalho",
         items: [
@@ -364,40 +356,38 @@ const pt: Dictionary = {
       },
       wave: {
         heading: "Do protótipo à produção",
-        body:
-          "Combinamos boas práticas de front-end, acessibilidade e deploy para entregar algo sólido — com espaço para iterar contigo em cada passo.",
+        body: "Combinamos boas práticas de front-end, acessibilidade e deploy para entregar algo sólido — com espaço para iterar contigo em cada passo.",
         imageAlt: "Portátil numa secretária com código no ecrã",
       },
     },
     contact: {
       title: "Diga olá",
-      body:
-        "Escolhe uma rede abaixo — cada ícone leva ao perfil ou canal correspondente.",
+      body: "Escolhe uma rede abaixo — cada ícone leva ao perfil ou canal correspondente.",
       socials: [
         {
           id: "youtube",
-          url: "https://www.youtube.com/",
+          url: "https://www.youtube.com/@isladevlab",
           label: "YouTube",
           action: "Subscrever",
           linkAria: "Abrir YouTube num novo separador",
         },
         {
           id: "github",
-          url: "https://github.com/",
+          url: "https://github.com/alesandraisla/",
           label: "GitHub",
           action: "Ver código",
           linkAria: "Abrir GitHub num novo separador",
         },
         {
           id: "instagram",
-          url: "https://www.instagram.com/",
+          url: "https://www.instagram.com/alesandradev/",
           label: "Instagram",
           action: "Seguir",
           linkAria: "Abrir Instagram num novo separador",
         },
         {
           id: "linkedin",
-          url: "https://www.linkedin.com/",
+          url: "https://www.linkedin.com/in/alesandramempis/",
           label: "LinkedIn",
           action: "Conectar",
           linkAria: "Abrir LinkedIn num novo separador",
@@ -455,33 +445,27 @@ const en: Dictionary = {
       body: "Tell your story, values and what drives you — this is a starting point.",
       split: {
         eyebrow: "Bespoke portfolio & maker craft",
-        titleBefore1: "Turn ideas into ",
-        emphasis1: "reality",
-        titleBetween: " with ",
-        emphasis2: "tailored",
-        titleAfter: " solutions — from the web to the physical object.",
+        titleBefore1: "Coding the ",
+        emphasis1: "digital, ",
+        titleBetween: " sculpting ",
+        emphasis2: "the",
+        titleAfter: " reality.",
         cta: "View creations",
         imageAlt: "Person working on a laptop at a bright desk",
+        titleBefore2: "I'm a Frontend Developer driven by the intersection of software and tangible world. With solid experience building complex and scalable interfaces, I apply software engineering rigor in both web development and digital fabrication. My focus is to unite minimalist aesthetics and technical precision to transform abstract concepts into real experiences, whether through lines of code or 3D models materialized.",
       },
       carousel: {
-        headingBefore: "Kind words from our ",
-        headingEmphasis: "lovely",
-        headingAfter: " collaborators",
+        headingBefore: "Real impact, ",
+        headingEmphasis: "from the pixel",
+        headingAfter: " to the physical",
         items: [
           {
-            quote: "I have absolutely loved working with you on this project.",
-            body: "Clear communication, on-time delivery, and attention to detail. The outcome went beyond what we imagined for our online presence.",
-            attribution: "Ana | Isla Lab",
+            body: "I found the 3D print really cute, really beautiful, amazing, impeccable work.",
+            attribution: "Cristhiane | Isla lab",
           },
           {
-            quote: "Professionalism and creativity at every step.",
-            body: "From prototype to deploy, we felt complete confidence. I recommend for teams that want more than a template.",
-            attribution: "Miguel | Parallel studio",
-          },
-          {
-            quote: "The balance between design and engineering is rare.",
-            body: "You turned technical requirements into a simple experience for users. We will work together again.",
-            attribution: "Sofia | Tech for Good",
+            body: "The site is perfect with all the features we needed.",
+            attribution: "Anieila | Isla lab",
           },
         ],
         cta: "Work with me",
@@ -491,8 +475,7 @@ const en: Dictionary = {
     },
     creations: {
       title: "Creations",
-      body:
-        "Three featured projects — click a card to read more about each one.",
+      body: "Three featured projects — click a card to read more about each one.",
       openDetailAria: "View details for {title}",
       closeDetail: "Close",
       projects: [
@@ -531,8 +514,7 @@ const en: Dictionary = {
     },
     aulas: {
       title: "Lessons",
-      body:
-        "Videos from the channel — click a card to open the lesson on YouTube (new tab).",
+      body: "Videos from the channel — click a card to watch the lesson.",
       openVideoAria: "Open the {title} lesson on YouTube (opens in a new tab)",
       lessons: [
         {
@@ -569,8 +551,7 @@ const en: Dictionary = {
     },
     technologies: {
       title: "Technologies",
-      body:
-        "Tools and practices I rely on to ship clear, fast interfaces that are easy to evolve.",
+      body: "Tools and practices I rely on to ship clear, fast interfaces that are easy to evolve.",
       grid: {
         heading: "Day-to-day stack",
         items: [
@@ -614,8 +595,7 @@ const en: Dictionary = {
       },
       wave: {
         heading: "From prototype to production",
-        body:
-          "We pair solid front-end practices, accessibility, and deployment so the result holds up — with room to iterate with you at every step.",
+        body: "We pair solid front-end practices, accessibility, and deployment so the result holds up — with room to iterate with you at every step.",
         imageAlt: "Laptop on a desk with code on the screen",
       },
     },

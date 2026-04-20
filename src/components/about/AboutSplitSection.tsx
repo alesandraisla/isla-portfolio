@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import mePhoto from "@/assets/mephoto.jpg";
 import type { Locale } from "@/i18n/config";
 import type { AboutSplitCopy } from "@/i18n/dictionaries";
 
-const SPLIT_IMAGE =
-  "https://images.unsplash.com/photo-1499951360447-b19be8e80a2f?w=900&q=80";
+const SPLIT_IMAGE = mePhoto;
 
 type Props = {
   locale: Locale;
@@ -17,7 +17,7 @@ export function AboutSplitSection({ locale, copy }: Props) {
   return (
     <section className="overflow-hidden rounded-2xl border border-jardim-verde/20 shadow-sm md:rounded-[1.25rem]">
       <div className="flex min-h-0 flex-col md:flex-row">
-        <div className="relative aspect-[4/3] w-full shrink-0 md:aspect-auto md:w-1/2 md:min-h-[min(100vw,22rem)] lg:min-h-[26rem]">
+        <div className="relative aspect-[4/3] w-full shrink-0 md:aspect-auto md:w-1/2 md:min-h-[min(100vw,28rem)] lg:min-h-[34rem]">
           <Image
             src={SPLIT_IMAGE}
             alt={copy.imageAlt}
@@ -39,6 +39,9 @@ export function AboutSplitSection({ locale, copy }: Props) {
             <em className="font-serif italic text-[#1a2330]">{copy.emphasis2}</em>
             {copy.titleAfter}
           </h1>
+          <h2 className="mt-4">
+            {copy.titleBefore2}
+          </h2>
 
           <Link
             href={`${base}/creations`}

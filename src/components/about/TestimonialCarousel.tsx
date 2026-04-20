@@ -82,9 +82,7 @@ export function TestimonialCarousel({ locale, copy }: Props) {
                   transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                   className="flex flex-col items-center text-center"
                 >
-                  <p className="font-serif text-xl leading-snug sm:text-2xl">
-                    &ldquo;{current.quote}&rdquo;
-                  </p>
+                  
                   <p className="mt-5 font-serif text-base font-semibold sm:text-lg">
                     {current.attribution}
                   </p>
