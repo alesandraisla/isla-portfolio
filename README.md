@@ -6,15 +6,17 @@ Repositório relacionado: [https://github.com/alesandraisla/isla-portfolio](http
 
 ## Pré-visualização
 
-_Capturas geradas em ambiente local (`/pt`)._
+_Capturas geradas em ambiente local (`/pt`). Os ficheiros vivem em **`public/readme/`** (entram no export estático). No README usamos **URLs absolutas** (`raw.githubusercontent.com`, ramo `master`) para o GitHub renderizar as imagens sem depender da base URL da página — caminhos relativos costumam dar **404** em alguns contextos (ex.: ver o README em formato “raw”)._
 
 | Início | Sobre |
 | --- | --- |
-| ![Página inicial em português](docs/readme/home-pt.png) | ![Página Sobre em português](docs/readme/about-pt.png) |
+| ![Página inicial em português](https://raw.githubusercontent.com/alesandraisla/isla-portfolio/master/public/readme/home-pt.png) | ![Página Sobre em português](https://raw.githubusercontent.com/alesandraisla/isla-portfolio/master/public/readme/about-pt.png) |
 
 | Definições (paletas) |
 | --- |
-| ![Página de definições com escolha de paleta](docs/readme/settings-pt.png) |
+| ![Página de definições com escolha de paleta](https://raw.githubusercontent.com/alesandraisla/isla-portfolio/master/public/readme/settings-pt.png) |
+
+_No site publicado no GitHub Pages, as mesmas imagens ficam também em `https://alesandraisla.github.io/isla-portfolio/readme/home-pt.png` (e análogos para `about-pt` / `settings-pt`), útil para partilhar o link direto._
 
 ## Tecnologias
 
@@ -40,6 +42,8 @@ src/
   components/          # UI por domínio
   i18n/                # config + dicionários
   styles/              # globals + tema (CSS variables)
+public/
+  readme/              # Capturas para o README (copiadas para out/ no build)
 ```
 
 ## Como correr localmente
@@ -74,10 +78,12 @@ O script `npm run start` corresponde ao servidor **Next** padrão; para GitHub P
 Com o servidor de desenvolvimento a correr (`npm run dev`), na raiz do projeto:
 
 ```bash
-mkdir -p docs/readme
-npx -y playwright@1.49.1 screenshot "http://127.0.0.1:3000/pt" "docs/readme/home-pt.png" --viewport-size=1280,800 --wait-for-timeout=2000
-npx -y playwright@1.49.1 screenshot "http://127.0.0.1:3000/pt/about" "docs/readme/about-pt.png" --viewport-size=1280,800 --wait-for-timeout=2000
-npx -y playwright@1.49.1 screenshot "http://127.0.0.1:3000/pt/settings" "docs/readme/settings-pt.png" --viewport-size=1280,800 --wait-for-timeout=2000
+mkdir -p public/readme
+npx -y playwright@1.49.1 screenshot "http://127.0.0.1:3000/pt" "public/readme/home-pt.png" --viewport-size=1280,800 --wait-for-timeout=2000
+npx -y playwright@1.49.1 screenshot "http://127.0.0.1:3000/pt/about" "public/readme/about-pt.png" --viewport-size=1280,800 --wait-for-timeout=2000
+npx -y playwright@1.49.1 screenshot "http://127.0.0.1:3000/pt/settings" "public/readme/settings-pt.png" --viewport-size=1280,800 --wait-for-timeout=2000
 ```
+
+Depois de alterares o ramo predefinido no GitHub (por exemplo de `master` para `main`), atualiza também as URLs absolutas na secção **Pré-visualização** deste README.
 
 Na primeira utilização o Playwright pode pedir a instalação do Chromium (`npx playwright install chromium`).
